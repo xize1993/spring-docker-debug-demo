@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    command: java -jar /project/target/docker-debug-demo-0.0.1-SNAPSHOT.jar
+
+  redis:
+    image: redis:5-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server

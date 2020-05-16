@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  openjdk:
+    image: openjdk:11-jdk-slim
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/project
+    working_dir: /project
+    depends_on:
+      - redis
+    command: java -jar target/docker-debug-demo-0.0.1-SNAPSHOT.jar
+
+  redis:
+    image: redis:5-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server

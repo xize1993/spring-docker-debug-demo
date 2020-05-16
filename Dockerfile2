@@ -1,0 +1,6 @@
+FROM maven:3-openjdk-11-slim
+
+COPY . /project
+RUN cd /project && mvn package
+
+ENTRYPOINT ["java", "-jar", "/project/target/docker-debug-demo-0.0.1-SNAPSHOT.jar"]
